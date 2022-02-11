@@ -1,0 +1,111 @@
+body {
+    color: black;
+    background-color: darkslateblue;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.colm {
+    display: table-cell;
+    background-color: red;
+    color: aliceblue;
+    font-weight: bolder;
+    font-size: larger;
+    border: 1px solid black;
+    height: 20%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.colm:hover {
+    background-color: rgb(91, 223, 179);
+    vertical-align: middle;
+    text-align: center;
+}
+
+.colm:focus {
+
+    animation: lightSpeedOutRight;
+    animation-duration: 1s;
+}
+
+.A-navi {
+    display: table-cell;
+    border-radius: 25px;
+    width: 50%;
+    background-color: black;
+    color: white;
+}
+
+.A-navi:hover {
+    background-color: white;
+    color: black;
+}
+
+.content-cell {
+    width: 70%; 
+    display: table-cell; 
+    border: 1px solid black;
+    background-color: rgb(110, 110, 228);
+    color: white;
+    height: 100vh;
+    text-align: center;
+}
+
+.activated {
+    background-color: rgb(91, 223, 179);
+}
+
+.TopBodyCard {
+    display: grid;
+    overflow: auto;
+    width: 100%;
+    grid-row-gap: 5px;
+}
+
+.TopBodyCard > a :hover {
+    animation-play-state: paused;
+    cursor: cell;
+    text-decoration: none;
+}
+
+
+.new_orders {
+    animation: heartBeat;
+    animation-duration: 10s;
+    background-color: rgb(202, 188, 188);
+    color: black;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-column-gap: 0px;
+    overflow: hidden;
+}
+
+
+
+.new_orders > .middle_card {
+    padding-left: 10px;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-box-align: center;
+}
+
+
+.normal_orders {
+    background-color: rgb(202, 188, 188);
+    color: black;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-column-gap: 0px;
+    overflow: hidden;
+}
+
+
+.normal_orders > .middle_card {
+    padding-left: 10px;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-box-align: center;
+}

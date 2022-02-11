@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Monitor
+{% endblock %}
+
+{% block content %}
+<div>
+    <div style="background-color: white; border-radius: 25px; overflow-y: scroll; color: black; max-height: 400px;">
+        <h4 style="width: 100%; border-bottom: 2px solid white; color: black;">AVAILABLE ORDERS</h4>
+        <table class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <th scope="col">{{ data.columns[0] }}</th>
+                    <th scope="col">{{ data.columns[1] }}</th>
+                    <th scope="col">{{ data.columns[2] }}</th>
+                    <th scope="col">{{ data.columns[3] }}</th>
+                    <th scope="col">ALLOCATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data.values %}
+                    <tr>
+                        <th scope="row">{{ i[0] }}</th>
+                        <th>{{ i[1] }}</th>
+                        <th>{{ i[2] }}</th>
+                        <th>{{ i[3] }}</th>
+                        <th>
+                            <form method="POST" class="form-register">
+                                {{ form.hidden_tag() }}
+                                {{ form.Allocate(class="btn btn-outline-success", style="min-width: 100%; max-width: 100%; height: 100%; border-radius: 25px;")}}
+                                <input type="hidden" name="Button_Value" id="Button_Value" value="{{ i[0] }}"> 
+                            </form>
+                        </th>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="background-color: white; border-radius: 25px; overflow-y: scroll; color: black;max-height: 400px;">
+        <h4 style="width: 100%; border-bottom: 2px solid white; color: black; ">STORAGE COMPARTMENT STATUS</h4>
+        <table class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <th scope="col">{{ data_box.columns[0] }}</th>
+                    <th scope="col">{{ data_box.columns[1] }}</th>
+                    <th scope="col">{{ data_box.columns[2] }}</th>
+                    <th scope="col">{{ data_box.columns[3] }}</th>
+                    <th scope="col">{{ data_box.columns[4] }}</th>
+                    <th scope="col">RELEASE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for j in data_box.values %}
+                    <tr>
+                        <th scope="row">{{ j[0] }}</th>
+                        <th>{{ j[1] }}</th>
+                        <th>{{ j[2] }}</th>
+                        <th>{{ j[3] }}</th>
+                        <th>{{ j[4] }}</th>
+                        <th>
+                            {% if j[4] != "UNOCCUPIED" %}
+                            <form method="POST" class="form-register">
+                                {{ form.hidden_tag() }}
+                                {{ form.Release(class="btn btn-outline-success", style="min-width: 100%; max-width: 100%; height: 100%; border-radius: 25px;")}}
+                                <input type="hidden" name="Button_Value" id="Button_Value" value="{{ j[0] }}"> 
+                            </form>
+                            {% else %}
+                            --
+                            {% endif %}
+                        </th>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

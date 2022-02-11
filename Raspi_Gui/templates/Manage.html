@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Manage
+{% endblock %}
+
+{% block content %}
+<div class="TopBodyCard">
+    <h3 style="width: 100%; border-bottom: 2px solid white; color: white; font-weight: bolder;"> PENDING ORDERS </h3>
+    {% for i in data.values %}
+    {% if i[2] == 'PENDING' %}
+    <a href="#">
+        <div class="new_orders">
+            <div class="left">
+                <img src="../static/{{ i[10] }}" alt="{{ i[10] }}" style="border: 2px solid black; width: 100%; height: 100%;">
+            </div>
+            <div class="middle_card">
+                <p><strong>ORDER ID: </strong>{{ i[0] }}</p>
+                <p><strong>Name: </strong>{{ i[6] }}</p>
+                <p><strong>Customer_ID: </strong>{{ i[5] }}</p>
+                <p><strong>Price: </strong>{{ i[9] }}</p>
+            </div> 
+            <div>
+                <form method="POST" class="form-register" style="height: 100%;">
+                    {{ form.hidden_tag() }}
+                    {{ form.Accept(class="btn btn-success", style="width: 100%; height: 50%; border-radius: 25px;") }}
+                    {{ form.Deny(class="btn btn-danger", style="width: 100%; height: 50%; border-radius: 25px;") }}
+                    <input type="hidden" name="Button_Value" id="Button_Value" value={{ i[0] }}>
+                </form>
+            </div>
+        </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+
+
+    <h3 style="width: 100%; border-bottom: 2px solid white; color: white; font-weight: bolder;"> PREPARING ORDERS </h3>
+        {% for i in data.values %}
+        {% if i[2] == 'PREPARING' %}
+        <a href="#">
+            <div class="normal_orders">
+                <div class="left">
+                    <img src="../static/{{ i[10] }}" alt="{{ i[10] }}" style="border: 2px solid black; width: 100%; height: 100%;">
+                </div>
+                <div class="middle_card">
+                    <p><strong>ORDER ID: </strong>{{ i[0] }}</p>
+                    <p><strong>Name: </strong>{{ i[6] }}</p>
+                    <p><strong>Customer_ID: </strong>{{ i[5] }}</p>
+                    <p><strong>Price: </strong>{{ i[9] }}</p>
+                </div> 
+                <div>
+                    <form method="POST" class="form-register" style="height: 100%;">
+                        {{ form.hidden_tag() }}
+                        {{ form.Done(class="btn btn-success", style="width: 100%; height: 100%; border: 2px solid black; border-radius: 50%;") }}
+                        <input type="hidden" name="Button_Value", id="Button_Value", value={{ i[0] }}>
+                    </form>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+
+
+            <h3 style="width: 100%; border-bottom: 2px solid white; color: white; font-weight: bolder;"> READY ORDERS </h3>
+                <a href="#">
+                    <form method="POST" class="form-register">
+                        {{ form.hidden_tag() }}
+                        {{ form.Verify(class="btn btn-success", style="width: 100%; height: 50%; border: 2px solid black; border-radius: 25px;") }}
+                        <input type="hidden" name="Button_Value", id="Button_Value", value=0>
+                    </form>
+                </a>
+                
+</div>
+{% endblock %}

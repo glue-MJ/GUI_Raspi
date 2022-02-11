@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='Icons/Top_Icon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Manage Order</title>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-dark" style="border-bottom: 2px solid black; background-color: rgb(172, 172, 230)">
+        <div class="container" style="text-align: center;">
+            <h1 class="navbar-brand" style="text-decoration: solid; font-weight: bolder; font-size: xx-large;">
+                <img src="{{ url_for('static', filename='Icons/Top_Icon.svg') }}" width="50" height="50" class="d-inline-block align-top" alt="">
+                GOURMET FAST
+            </h1>
+        </div>
+        <div style="text-align: right; top: 0; right: 0; position: relative; display: table; width: 100%;">
+            <button class="A-navi" onclick="window.history.back()">&#8249;</button>
+            <button class="A-navi" onclick="window.history.forward()">&#8250;</button>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <button type="button" class='m1-2 mb-1 close' data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <div style="background-color: white; border-radius: 25px; overflow: auto; color: black;">
+        <table class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <th scope="col">{{ data.columns[0] }}</th>
+                    <th scope="col">{{ data.columns[1] }}</th>
+                    <th scope="col"></th>
+                    <th scope="col">{{ data.columns[3] }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data.values %}
+                <tr>
+                    <th scope="row">{{ i[0] }}</th>
+                    <th>
+                        <img src="../static/{{ i[1] }}" alt="" style="width: 10%; height: auto;">
+                    </th>
+                    <th>{{ i[2] }}</th>
+                    <th>{{ i[3] }}</th>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    <form method="POST" class="form-register">
+        {{ form.hidden_tag() }}
+        {{ form.Paid(class="btn btn-outline-success", style="min-width: 100%; max-width: 100%; height: 100%; border-radius: 25px;") }}
+    </form>
+    
+    </body>
+
+</html>

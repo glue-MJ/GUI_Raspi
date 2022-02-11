@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<div style="overflow: auto;">
+    <div style="display: grid; grid-template-columns: 2fr 2fr 2fr; grid-column-gap: 2px; vertical-align: middle;">
+        <div style="background-color: white; vertical-align: middle; text-align: center; border: 2px solid black; border-radius: 25px;">
+            <h4 style="color: black; border-bottom: 2px solid black;"><strong>TOTAL SALES AMOUNT:</strong></h3>
+            <h4 style="color: aqua; font-weight: bolder;">{{ metrics["Total Sales"] }}</h3>
+        </div>
+        <div style="background-color: white; vertical-align: middle; text-align: center; border: 2px solid black; border-radius: 25px;">
+            <h4 style="color: black; border-bottom: 2px solid black;"><strong>SALES VOLUME:</strong></h3>
+            <h4 style="color: aqua; font-weight: bolder;">{{ metrics["No Of Sales"] }}</h3>
+        </div>  
+        <div style="background-color: white; vertical-align: middle; text-align: center; border: 2px solid black; border-radius: 25px;">
+            <h4 style="color: black; border-bottom: 2px solid black;"><strong>AVERAGE SALE:</strong></h3>
+            <h4 style="color: aqua; font-weight: bolder;">{{ metrics["Average Amount Per Sales"] }}</h3>
+        </div>  
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr;">
+        <img src="../static/{{ path }}" alt="{{ path }}" style="max-width: 100%; height: auto; border: 2px solid black; border-radius: 25px;">
+    </div>
+
+    <div style="background-color: white; border-radius: 25px; overflow-y: scroll; color: black; max-height: 250px;">
+        <table class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <th scope="col">{{ data.columns[0] }}</th>
+                    <th scope="col">{{ data.columns[1] }}</th>
+                    <th scope="col">{{ data.columns[2] }}</th>
+                    <th scope="col">{{ data.columns[3] }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data.values %}
+                <tr>
+                    <th scope="row">{{ i[0] }}</th>
+                    <th>{{ i[1] }}</th>
+                    <th>{{ i[2] }}</th>
+                    <th>{{ i[3] }}</th>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
